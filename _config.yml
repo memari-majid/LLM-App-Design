@@ -1,4 +1,4 @@
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 title: LLM Application-Architecture Design
 description: The AI Architect's Field Manual
 baseurl: ""
@@ -20,6 +20,7 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # Exclude from processing
 exclude:
