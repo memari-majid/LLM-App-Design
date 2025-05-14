@@ -1,0 +1,1121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The AI Architect's Field Manual">
+      
+      
+      
+        <link rel="canonical" href="https://memari-majid.github.io/LLM-App-Desing/">
+      
+      
+      
+        <link rel="next" href="about/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Home - LLM Application-Architecture Design</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llm-application-architecture-design-the-ai-architects-field-manual" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="LLM Application-Architecture Design" class="md-header__button md-logo" aria-label="LLM Application-Architecture Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM Application-Architecture Design
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/memari-majid/LLM-App-Desing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    memari-majid/LLM-App-Desing
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="chapters/00-introduction/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="LLM Application-Architecture Design" class="md-nav__button md-logo" aria-label="LLM Application-Architecture Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LLM Application-Architecture Design
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/memari-majid/LLM-App-Desing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    memari-majid/LLM-App-Desing
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-guide-provides" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Guide Provides
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-whom-this-guide-is-designed" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Whom This Guide Is Designed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ai-architects-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      The AI Architect's Challenge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-this-guide-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Makes This Guide Different
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-topics-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Topics Covered
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Topics Covered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy &amp; Foundations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operational-excellence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operational Excellence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-pattern-quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Pattern Quick Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-architectural-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Architectural Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-case-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Case Studies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-architecture-anti-patterns-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Architecture Anti-Patterns to Avoid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapters
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Chapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapters/00-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapters/01-stakeholder-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stakeholder Alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapters/02-llm-model-selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Selection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapters/03-rag-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapters/04-agent-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Architectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-guide-provides" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Guide Provides
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-whom-this-guide-is-designed" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Whom This Guide Is Designed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-ai-architects-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      The AI Architect's Challenge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-makes-this-guide-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Makes This Guide Different
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-topics-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Topics Covered
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Topics Covered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strategy &amp; Foundations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operational-excellence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operational Excellence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-pattern-quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Pattern Quick Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-architectural-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Architectural Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-case-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-World Case Studies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-architecture-anti-patterns-to-avoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Architecture Anti-Patterns to Avoid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="llm-application-architecture-design-the-ai-architects-field-manual">LLM Application-Architecture Design: The AI Architect's Field Manual<a class="headerlink" href="#llm-application-architecture-design-the-ai-architects-field-manual" title="Permanent link">&para;</a></h1>
+<h2 id="what-this-guide-provides">What This Guide Provides<a class="headerlink" href="#what-this-guide-provides" title="Permanent link">&para;</a></h2>
+<p>This comprehensive resource equips AI Architects and technical leaders with practical knowledge for designing, building, and operating production-ready LLM applications and AI agent systems. Moving beyond theory, we provide battle-tested patterns, principles, and strategies that deliver measurable business value.</p>
+<p>Whether you're creating a simple RAG application or building sophisticated multi-agent systems, this field manual helps you navigate the entire journey—from initial stakeholder alignment to production deployment and continuous improvement.</p>
+<h2 id="for-whom-this-guide-is-designed">For Whom This Guide Is Designed<a class="headerlink" href="#for-whom-this-guide-is-designed" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>AI Architects</strong> responsible for LLM system design and implementation</li>
+<li><strong>Solutions Architects</strong> adapting their expertise to AI-focused initiatives  </li>
+<li><strong>ML Engineers</strong> and <strong>Software Engineers</strong> building production LLM applications</li>
+<li><strong>Technical Leaders</strong> guiding AI strategy and implementation</li>
+<li><strong>Product Managers</strong> overseeing LLM-based products and services</li>
+</ul>
+<h2 id="the-ai-architects-challenge">The AI Architect's Challenge<a class="headerlink" href="#the-ai-architects-challenge" title="Permanent link">&para;</a></h2>
+<p>Large Language Models (LLMs) are transforming software development through their ability to understand context, generate content, and execute complex workflows. However, moving beyond simple prototypes to robust, production-grade LLM applications—especially those with autonomous AI agents—requires specialized architectural approaches.</p>
+<p>The <strong>AI Architect</strong> must bridge business vision with technical execution, ensuring LLM solutions are not only innovative but also:
+- Practical and business-aligned
+- Reliable and maintainable
+- Secure and responsible
+- Scalable and cost-effective
+- Ethically sound and compliant</p>
+<p>This guide addresses the core challenges faced by architects designing LLM-based systems, with particular focus on the critical aspects of creating and managing AI agent environments.</p>
+<h2 id="what-makes-this-guide-different">What Makes This Guide Different<a class="headerlink" href="#what-makes-this-guide-different" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Practical Over Theoretical</strong>: Real-world examples, tested patterns, and concrete metrics—not just concepts.</li>
+<li><strong>Business Value Focus</strong>: Every architectural decision connects to measurable business outcomes.</li>
+<li><strong>Full Lifecycle Coverage</strong>: From initial stakeholder alignment through production operation.</li>
+<li><strong>Balanced Approach</strong>: Bridges established software architecture principles with LLM-specific innovations.</li>
+<li><strong>Production Readiness</strong>: Emphasis on enterprise integration, governance, and operational excellence.</li>
+<li><strong>Specialized Agent Guidance</strong>: Detailed coverage of AI agent architectures and multi-agent systems.</li>
+<li><strong>Visual Learning Aids</strong>: Complex architectural concepts explained through clear diagrams and reference architectures.</li>
+<li><strong>Community-Driven Evolution</strong>: A modular structure designed to evolve with new patterns and best practices.</li>
+</ol>
+<h2 id="core-topics-covered">Core Topics Covered<a class="headerlink" href="#core-topics-covered" title="Permanent link">&para;</a></h2>
+<h3 id="strategy-foundations">Strategy &amp; Foundations<a class="headerlink" href="#strategy-foundations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Translating business requirements into technical architectures</li>
+<li>Stakeholder alignment and expectation management</li>
+<li>LLM model selection (API vs. open-source)</li>
+<li>Building business cases with realistic ROI projections</li>
+<li>Ethical and governance frameworks</li>
+</ul>
+<h3 id="technical-architecture">Technical Architecture<a class="headerlink" href="#technical-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Retrieval and knowledge integration (RAG patterns)</li>
+<li>Agent architectures and orchestration</li>
+<li>Context management and memory systems</li>
+<li>Prompt engineering and template management</li>
+<li>Safety guardrails and compliance mechanisms</li>
+</ul>
+<h3 id="production-implementation">Production Implementation<a class="headerlink" href="#production-implementation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Scalability and performance optimization</li>
+<li>Cost management and efficiency strategies</li>
+<li>Integration with enterprise systems</li>
+<li>Security and privacy considerations</li>
+<li>Monitoring and observability patterns</li>
+</ul>
+<h3 id="operational-excellence">Operational Excellence<a class="headerlink" href="#operational-excellence" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Testing and evaluation frameworks</li>
+<li>Incident management and reliability engineering</li>
+<li>Continuous improvement processes</li>
+<li>Human-in-the-loop workflows</li>
+<li>Cost optimization techniques</li>
+</ul>
+<h2 id="design-pattern-quick-reference">Design Pattern Quick Reference<a class="headerlink" href="#design-pattern-quick-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>When To Use</th>
+<th>Implementation Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RAG (Retrieval-Augmented Generation)</strong></td>
+<td>When your LLM needs access to private or current knowledge</td>
+<td>Implement a retrieval system that fetches relevant documents and injects them into the prompt</td>
+</tr>
+<tr>
+<td><strong>Agent + Tools</strong></td>
+<td>For complex, multi-step tasks requiring external capabilities</td>
+<td>Create an agent loop that plans task sequences and calls appropriate tools</td>
+</tr>
+<tr>
+<td><strong>Multi-Agent Collaboration</strong></td>
+<td>When tasks require diverse expertise and parallel processing</td>
+<td>Design specialist agents with clear roles and communication protocols</td>
+</tr>
+<tr>
+<td><strong>Human-in-the-Loop Escalation</strong></td>
+<td>For high-stakes decisions requiring human oversight</td>
+<td>Build explicit escalation paths from automation to human judgment</td>
+</tr>
+<tr>
+<td><strong>Semantic Caching</strong></td>
+<td>To improve performance and reduce costs for similar queries</td>
+<td>Implement embedding-based cache lookup with appropriate invalidation strategies</td>
+</tr>
+<tr>
+<td><strong>Guardrails &amp; Content Filtering</strong></td>
+<td>To ensure safety, compliance, and quality control</td>
+<td>Develop multi-stage filtering with classification and policy enforcement</td>
+</tr>
+<tr>
+<td><strong>Chain-of-Thought Processing</strong></td>
+<td>For complex reasoning tasks requiring structured thinking</td>
+<td>Break reasoning into explicit steps with intermediate results validation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-architectural-principles">Key Architectural Principles<a class="headerlink" href="#key-architectural-principles" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Separation of Concerns</strong>: Divide your LLM application into modular components with clear responsibilities.</li>
+<li><strong>Defense in Depth</strong>: Implement multiple layers of validation, safety controls, and monitoring.</li>
+<li><strong>Cost-Aware Design</strong>: Consider inference costs, token optimization, and resource utilization in every decision.</li>
+<li><strong>Model Abstraction</strong>: Decouple application logic from specific model implementations for future flexibility.</li>
+<li><strong>Graceful Degradation</strong>: Design systems that maintain core functionality even when components fail.</li>
+<li><strong>Explainability by Design</strong>: Build transparency mechanisms into every layer of the architecture.</li>
+<li><strong>Data Governance Integration</strong>: Ensure data lineage, privacy controls, and compliance throughout the lifecycle.</li>
+</ol>
+<h2 id="real-world-case-studies">Real-World Case Studies<a class="headerlink" href="#real-world-case-studies" title="Permanent link">&para;</a></h2>
+<p>Our guide includes detailed case studies with measurable outcomes:</p>
+<ul>
+<li><strong>Customer Service</strong>: AI agent system that reduced resolution time by 45% through hybrid routing</li>
+<li><strong>Developer Productivity</strong>: Code assistant that increased developer velocity 3x with autonomous review agents</li>
+<li><strong>Legal Operations</strong>: Document review system that reduced processing time by 70% while maintaining accuracy</li>
+<li><strong>Financial Services</strong>: Research copilot with collaborative agents that accelerated analysis while ensuring compliance</li>
+</ul>
+<p>Each case study includes architecture diagrams, implementation details, key challenges overcome, and measured business results.</p>
+<h2 id="llm-architecture-anti-patterns-to-avoid">LLM Architecture Anti-Patterns to Avoid<a class="headerlink" href="#llm-architecture-anti-patterns-to-avoid" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>The Monolithic Prompt</strong>: Cramming all logic, instructions, and data into massive prompts</li>
+<li><strong>Direct Model Pipe</strong>: Sending raw user inputs to the model without processing or validation</li>
+<li><strong>Stateless Interactions</strong>: Treating each exchange as independent without context management</li>
+<li><strong>The Black Box Approach</strong>: Failing to implement explainability and observability mechanisms</li>
+<li><strong>Cost-Blind Design</strong>: Ignoring token usage, caching opportunities, and resource optimization</li>
+</ol>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p>To begin applying these principles to your LLM projects:</p>
+<ol>
+<li><strong>Assess Your Use Case</strong>: Identify the core business value and functional requirements</li>
+<li><strong>Select Appropriate Patterns</strong>: Choose the architectural patterns that best match your needs</li>
+<li><strong>Design Core Components</strong>: Map out the essential systems: retrieval, orchestration, safety, etc.</li>
+<li><strong>Implement Incrementally</strong>: Start with a minimum viable architecture and iterate with feedback</li>
+<li><strong>Monitor and Optimize</strong>: Continuously measure performance, cost, and business impact</li>
+</ol>
+<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
+<p>This guide is community-maintained and evolves alongside the rapidly changing LLM landscape. Contributions are welcomed in several areas:</p>
+<ul>
+<li>Emerging design patterns and architectural approaches</li>
+<li>Case studies with measurable business outcomes</li>
+<li>Visual diagrams and decision frameworks</li>
+<li>Implementation examples and code samples</li>
+</ul>
+<p>See our contribution guidelines for more details on how to participate.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>Creative Commons BY-SA-4.0: You're free to share, adapt, and build upon this work, even commercially, as long as you give appropriate credit and share under the same terms.</p>
+<p><em>Status: v0.1-alpha — evolving resource with community contributions welcomed.</em></p>
+<hr />
+<p>© 2025 The LLM Application-Architecture Design Contributors </p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.copy"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1302 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The AI Architect's Field Manual">
+      
+      
+      
+        <link rel="canonical" href="https://memari-majid.github.io/LLM-App-Desing/chapters/03-rag-architecture/">
+      
+      
+        <link rel="prev" href="../02-llm-model-selection/">
+      
+      
+        <link rel="next" href="../04-agent-architectures/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Retrieval-Augmented Generation (RAG) Architecture - LLM Application-Architecture Design</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#retrieval-augmented-generation-rag-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LLM Application-Architecture Design" class="md-header__button md-logo" aria-label="LLM Application-Architecture Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM Application-Architecture Design
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Retrieval-Augmented Generation (RAG) Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/memari-majid/LLM-App-Desing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    memari-majid/LLM-App-Desing
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00-introduction/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LLM Application-Architecture Design" class="md-nav__button md-logo" aria-label="LLM Application-Architecture Design" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LLM Application-Architecture Design
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/memari-majid/LLM-App-Desing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    memari-majid/LLM-App-Desing
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Chapters
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Chapters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-stakeholder-alignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stakeholder Alignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-llm-model-selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Selection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    RAG Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    RAG Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-rag-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core RAG Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-rag-design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced RAG Design Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced RAG Design Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-stage-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Multi-Stage Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-query-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Query Transformation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-recursive-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Recursive Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-hypothetical-document-retrieval-hyde" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Hypothetical Document Retrieval (HyDE)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-database-selection-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Database Selection Criteria
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chunking-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chunking Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chunking Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-size-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed-Size Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantic Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hierarchical-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hierarchical Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliding-window-with-overlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Window with Overlap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag-evaluation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAG Evaluation Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG Evaluation Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-retrieval-quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Retrieval Quality Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generation-quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Generation Quality Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-end-to-end-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. End-to-End Evaluation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimization-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Optimization Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Optimization Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-embedding-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Embedding Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-vector-database-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Vector Database Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-retrieval-strategy-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Retrieval Strategy Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-generation-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Generation Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-agent-architectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agent Architectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-rag-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core RAG Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-rag-design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced RAG Design Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced RAG Design Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-multi-stage-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Multi-Stage Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-query-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Query Transformation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-recursive-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Recursive Retrieval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-hypothetical-document-retrieval-hyde" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Hypothetical Document Retrieval (HyDE)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-database-selection-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Database Selection Criteria
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chunking-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chunking Strategies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chunking Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-size-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed-Size Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantic Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hierarchical-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hierarchical Chunking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliding-window-with-overlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Window with Overlap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rag-evaluation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAG Evaluation Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG Evaluation Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-retrieval-quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Retrieval Quality Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generation-quality-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Generation Quality Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-end-to-end-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. End-to-End Evaluation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimization-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Optimization Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Optimization Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-embedding-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Embedding Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-vector-database-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Vector Database Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-retrieval-strategy-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Retrieval Strategy Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-generation-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Generation Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="retrieval-augmented-generation-rag-architecture">Retrieval-Augmented Generation (RAG) Architecture<a class="headerlink" href="#retrieval-augmented-generation-rag-architecture" title="Permanent link">&para;</a></h1>
+<p>Retrieval-Augmented Generation (RAG) has emerged as a cornerstone architecture for production LLM applications, enabling models to access and reason over private, current, or specialized knowledge. This chapter explores RAG architecture patterns, components, and best practices.</p>
+<h2 id="core-rag-architecture">Core RAG Architecture<a class="headerlink" href="#core-rag-architecture" title="Permanent link">&para;</a></h2>
+<p>The fundamental RAG process consists of five key components:</p>
+<p><img alt="RAG Architecture" src="/assets/images/rag-architecture.png" /></p>
+<ol>
+<li><strong>Document Processing Pipeline</strong></li>
+<li>Document ingestion from multiple sources</li>
+<li>Text extraction and cleaning</li>
+<li>Chunking strategies</li>
+<li>
+<p>Metadata enrichment</p>
+</li>
+<li>
+<p><strong>Embedding Generation</strong></p>
+</li>
+<li>Embedding model selection</li>
+<li>Vector representation creation</li>
+<li>Dimensionality considerations</li>
+<li>
+<p>Batch processing strategies</p>
+</li>
+<li>
+<p><strong>Vector Database</strong></p>
+</li>
+<li>Vector store selection and configuration</li>
+<li>Indexing approaches</li>
+<li>Metadata filtering capabilities</li>
+<li>
+<p>Scaling considerations</p>
+</li>
+<li>
+<p><strong>Retrieval Component</strong></p>
+</li>
+<li>Query processing</li>
+<li>Semantic search execution</li>
+<li>Relevance ranking</li>
+<li>
+<p>Result filtering</p>
+</li>
+<li>
+<p><strong>Generation with Context</strong></p>
+</li>
+<li>Prompt construction with retrieved content</li>
+<li>Context integration strategies</li>
+<li>Response synthesis</li>
+<li>Citation and attribution</li>
+</ol>
+<h2 id="advanced-rag-design-patterns">Advanced RAG Design Patterns<a class="headerlink" href="#advanced-rag-design-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="1-multi-stage-retrieval">1. Multi-Stage Retrieval<a class="headerlink" href="#1-multi-stage-retrieval" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[Query] → [Initial Retrieval] → [Results Reranking] → [LLM Generation]
+</code></pre></div>
+<p>This pattern introduces a reranking step that applies more sophisticated relevance criteria after initial retrieval, significantly improving result quality. Reranking can use:</p>
+<ul>
+<li>Cross-encoders for pair-wise relevance scoring</li>
+<li>Query-specific filtering criteria</li>
+<li>LLM-based relevance assessment</li>
+<li>Hybrid keyword + semantic ranking</li>
+</ul>
+<h3 id="2-query-transformation">2. Query Transformation<a class="headerlink" href="#2-query-transformation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[Original Query] → [Query Expansion/Reformulation] → [Retrieval] → [LLM Generation]
+</code></pre></div>
+<p>This pattern addresses the "lexical gap" between user queries and documents by:</p>
+<ul>
+<li>Expanding queries with synonyms or related terms</li>
+<li>Reformulating queries for optimal retrieval</li>
+<li>Generating multiple search queries from a single user question</li>
+<li>Creating structured queries with metadata filters</li>
+</ul>
+<h3 id="3-recursive-retrieval">3. Recursive Retrieval<a class="headerlink" href="#3-recursive-retrieval" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[Query] → [Initial Retrieval] → [LLM Processing] → [Follow-up Queries] → [Additional Retrieval] → [Final Generation]
+</code></pre></div>
+<p>This pattern enables multi-hop reasoning by:
+- Analyzing initial results to identify information gaps
+- Generating follow-up queries to fill those gaps
+- Building a comprehensive context through multiple retrieval rounds
+- Synthesizing across multiple retrieved contexts</p>
+<h3 id="4-hypothetical-document-retrieval-hyde">4. Hypothetical Document Retrieval (HyDE)<a class="headerlink" href="#4-hypothetical-document-retrieval-hyde" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[Query] → [Generate Hypothetical Answer] → [Use as Retrieval Query] → [Actual Retrieval] → [LLM Generation]
+</code></pre></div>
+<p>This innovative pattern:
+- Has the LLM generate a hypothetical document that would answer the query
+- Uses this hypothetical document as the retrieval query
+- Often improves retrieval of relevant content for complex queries</p>
+<h2 id="vector-database-selection-criteria">Vector Database Selection Criteria<a class="headerlink" href="#vector-database-selection-criteria" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Why It Matters</th>
+<th>Example Technologies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Query Speed</strong></td>
+<td>Affects response time</td>
+<td>Pinecone, Qdrant, Weaviate</td>
+</tr>
+<tr>
+<td><strong>Filtering Capabilities</strong></td>
+<td>Enables precise retrieval</td>
+<td>Weaviate, Pinecone, Milvus</td>
+</tr>
+<tr>
+<td><strong>Scaling Model</strong></td>
+<td>Affects cost and performance</td>
+<td>Pinecone (serverless), Milvus (distributed)</td>
+</tr>
+<tr>
+<td><strong>Metadata Support</strong></td>
+<td>Enables hybrid search</td>
+<td>Qdrant, Weaviate, Chroma</td>
+</tr>
+<tr>
+<td><strong>Update Capabilities</strong></td>
+<td>Affects data freshness</td>
+<td>Most modern vector DBs</td>
+</tr>
+<tr>
+<td><strong>Cloud vs. Self-hosted</strong></td>
+<td>Deployment flexibility</td>
+<td>Pinecone (cloud), Qdrant (both)</td>
+</tr>
+<tr>
+<td><strong>Similarity Metrics</strong></td>
+<td>Affects retrieval quality</td>
+<td>Cosine, Euclidean, Dot product</td>
+</tr>
+</tbody>
+</table>
+<h2 id="chunking-strategies">Chunking Strategies<a class="headerlink" href="#chunking-strategies" title="Permanent link">&para;</a></h2>
+<p>Document chunking significantly impacts retrieval quality:</p>
+<h3 id="fixed-size-chunking">Fixed-Size Chunking<a class="headerlink" href="#fixed-size-chunking" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Approach</strong>: Break documents into chunks of consistent token/character length</li>
+<li><strong>Pros</strong>: Simple implementation, consistent processing</li>
+<li><strong>Cons</strong>: May split semantic units, context loss at boundaries</li>
+</ul>
+<h3 id="semantic-chunking">Semantic Chunking<a class="headerlink" href="#semantic-chunking" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Approach</strong>: Break documents at natural semantic boundaries (paragraphs, sections)</li>
+<li><strong>Pros</strong>: Preserves semantic unity, more natural retrieval units</li>
+<li><strong>Cons</strong>: Variable chunk sizes may affect retrieval consistency</li>
+</ul>
+<h3 id="hierarchical-chunking">Hierarchical Chunking<a class="headerlink" href="#hierarchical-chunking" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Approach</strong>: Create multiple granularity levels (document → section → paragraph)</li>
+<li><strong>Pros</strong>: Enables multi-level retrieval, preserves broader context</li>
+<li><strong>Cons</strong>: More complex implementation, storage overhead</li>
+</ul>
+<h3 id="sliding-window-with-overlap">Sliding Window with Overlap<a class="headerlink" href="#sliding-window-with-overlap" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Approach</strong>: Create overlapping chunks to preserve context across boundaries</li>
+<li><strong>Pros</strong>: Reduces information loss at chunk boundaries</li>
+<li><strong>Cons</strong>: Storage overhead, potential duplication in results</li>
+</ul>
+<h2 id="rag-evaluation-framework">RAG Evaluation Framework<a class="headerlink" href="#rag-evaluation-framework" title="Permanent link">&para;</a></h2>
+<p>Effective RAG systems require evaluation across multiple dimensions:</p>
+<h3 id="1-retrieval-quality-metrics">1. Retrieval Quality Metrics<a class="headerlink" href="#1-retrieval-quality-metrics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Recall@k</strong>: Proportion of relevant documents retrieved in top k results</li>
+<li><strong>Precision@k</strong>: Proportion of top k retrieved documents that are relevant</li>
+<li><strong>Mean Reciprocal Rank (MRR)</strong>: Position of first relevant document</li>
+<li><strong>Normalized Discounted Cumulative Gain (NDCG)</strong>: Relevance-weighted ranking metric</li>
+</ul>
+<h3 id="2-generation-quality-metrics">2. Generation Quality Metrics<a class="headerlink" href="#2-generation-quality-metrics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Faithfulness</strong>: How well the generated content reflects retrieved information</li>
+<li><strong>Answer Relevance</strong>: How well the answer addresses the question</li>
+<li><strong>Citation Accuracy</strong>: Whether citations correctly map to source material</li>
+<li><strong>Hallucination Rate</strong>: Frequency of made-up information not in retrieved content</li>
+</ul>
+<h3 id="3-end-to-end-evaluation">3. End-to-End Evaluation<a class="headerlink" href="#3-end-to-end-evaluation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Task Completion Rate</strong>: Whether users can accomplish their tasks</li>
+<li><strong>Time to Answer</strong>: Total time from query to usable response</li>
+<li><strong>User Satisfaction</strong>: Subjective evaluation of response quality</li>
+<li><strong>Error Rate</strong>: Frequency of problematic responses</li>
+</ul>
+<h2 id="performance-optimization-techniques">Performance Optimization Techniques<a class="headerlink" href="#performance-optimization-techniques" title="Permanent link">&para;</a></h2>
+<h3 id="1-embedding-optimization">1. Embedding Optimization<a class="headerlink" href="#1-embedding-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Embedding model selection for domain specificity</li>
+<li>Dimensionality reduction techniques</li>
+<li>Quantization for storage efficiency</li>
+<li>Batched processing for throughput</li>
+</ul>
+<h3 id="2-vector-database-optimization">2. Vector Database Optimization<a class="headerlink" href="#2-vector-database-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Appropriate index selection (HNSW, IVF, etc.)</li>
+<li>Caching strategies for frequent queries</li>
+<li>Sharding approaches for large collections</li>
+<li>Hardware acceleration (GPU/SIMD)</li>
+</ul>
+<h3 id="3-retrieval-strategy-optimization">3. Retrieval Strategy Optimization<a class="headerlink" href="#3-retrieval-strategy-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Dynamic k selection based on query characteristics</li>
+<li>Hybrid search (vector + keyword + metadata)</li>
+<li>Query routing to specialized indices</li>
+<li>Context-aware filtering</li>
+</ul>
+<h3 id="4-generation-optimization">4. Generation Optimization<a class="headerlink" href="#4-generation-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Dynamic prompt construction based on retrieved content</li>
+<li>Strategic context placement within prompts</li>
+<li>Streaming responses to improve perceived latency</li>
+<li>Response caching for common queries</li>
+</ul>
+<p>By implementing these advanced RAG patterns and optimization techniques, AI architects can build production-grade knowledge-enabled LLM applications that deliver reliable, accurate, and contextually relevant responses.</p>
+<hr />
+<p><a href="previous-chapter-link">Previous Chapter</a> | <a href="next-chapter-link">Next Chapter</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

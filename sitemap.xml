@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/about/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/chapters/00-introduction/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/chapters/01-stakeholder-alignment/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/chapters/02-llm-model-selection/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/chapters/03-rag-architecture/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+    <url>
+         <loc>https://memari-majid.github.io/LLM-App-Desing/chapters/04-agent-architectures/</loc>
+         <lastmod>2025-05-14</lastmod>
+    </url>
+</urlset>
