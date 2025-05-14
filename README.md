@@ -144,7 +144,7 @@ Creative Commons BY-SA-4.0: You're free to share, adapt, and build upon this wor
 
 This repository contains the source code for the LLM Application-Architecture Design guide, hosted on GitHub Pages.
 
-The guide is accessible at: https://yourusername.github.io/llm-architecture-guide/
+The guide is accessible at: https://memari-majid.github.io/LLM-Review/
 
 ## Development
 

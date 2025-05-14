@@ -2,9 +2,9 @@ theme: jekyll-theme-cayman
 title: LLM Application-Architecture Design
 description: The AI Architect's Field Manual
 baseurl: ""
-url: ""
-github_username: 
-repository: 
+url: "https://memari-majid.github.io"
+github_username: memari-majid
+repository: memari-majid/LLM-Review
 
 # Build settings
 markdown: kramdown
