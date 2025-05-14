@@ -1,4 +1,4 @@
-# LLM Application-Architecture Design: The AI Architect's Field Manual
+# LLM Application-Architecture Design
 
 ## What This Guide Provides
 
