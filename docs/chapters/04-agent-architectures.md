@@ -15,7 +15,7 @@ LLM-powered agents represent a paradigm shift in AI application architecture, en
 
 At its core, an LLM agent consists of these essential components:
 
-![Agent Architecture](/assets/images/agent-architecture.png)
+![Agent Architecture](../assets/images/agent-architecture.png)
 
 1. **Agent Core (LLM)**
    - Reasoning engine

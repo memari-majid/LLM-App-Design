@@ -15,7 +15,7 @@ Selecting the right LLM for your application is a critical architectural decisio
 
 Model selection requires balancing multiple dimensions. Start with these key questions:
 
-![Model Selection Decision Tree](/assets/images/model-selection-tree.png)
+![Model Selection Decision Tree](../assets/images/model-selection-tree.png)
 
 1. **Deployment Environment**
    - Does the model need to run in a self-hosted environment?

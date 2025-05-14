@@ -15,4 +15,25 @@ vendor/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db 
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# MkDocs
+site/
+
+# Virtual environments
+.env
+.venv
+ENV/
+env/
+venv/
+
+# IDE/Editor specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace 
