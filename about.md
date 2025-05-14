@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: default # or 'page', 'default' is usually fine for Just the Docs
 title: About
-nav_order: 3
+nav_order: 4 # Adjust as needed, for an aux link or last item
 permalink: /about/
 ---
 

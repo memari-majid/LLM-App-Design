@@ -1,10 +1,10 @@
 ---
-layout: page
+layout: default # or 'page'
 title: Introduction to LLM Application Architecture
 parent: Chapters
 nav_order: 0
 permalink: /chapters/00-introduction/
-date: 2023-05-15
+date: 2023-05-15 # Optional, but good practice
 ---
 
 # Introduction to LLM Application Architecture
