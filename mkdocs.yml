@@ -7,7 +7,7 @@ repo_name: memari-majid/LLM-App-Design
 theme:
   name: material
   features:
-    # navigation.tabs # Keep this off for no top tabs
+     navigation.tabs # Keep this off for no top tabs
     - navigation.sections # This will create sections in the sidebar based on nav structure
     - navigation.expand
     - navigation.top
