@@ -11,10 +11,12 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.tracking
     - search.suggest
     - search.highlight
     - content.tabs.link
     - content.code.copy
+    - toc.integrate
   palette:
     scheme: default
     primary: indigo
