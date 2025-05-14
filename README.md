@@ -24,11 +24,12 @@ It also consolidates a **living catalogue of LLM-specific design patterns**—fr
 This book is built on the premise that robust LLM applications are not developed in a vacuum. They stand on the shoulders of decades of software architecture wisdom. We therefore:
 
 1.  **Anchor in Proven Principles**: We continuously reference fundamental concepts like the 4+1 Architectural View Model, quality attribute-driven design (via ATAM/QAW), Domain-Driven Design, and Architectural Decision Records (ADRs).
-2.  **Extend for LLM Realities**: We introduce LLM-specific considerations, such as:
+2.  **Leverage Classic Software Design Patterns**: We acknowledge the timeless wisdom encapsulated in foundational software design patterns (e.g., as catalogued by the Gang of Four and elaborated in resources like *Head First Design Patterns* and *refactoring.guru*). Many challenges in LLM application architecture have parallels in traditional software, and understanding these classic solutions provides a strong conceptual toolkit. Our LLM-specific patterns often adapt these principles or offer novel solutions where the unique characteristics of LLMs diverge significantly.
+3.  **Extend for LLM Realities**: We introduce LLM-specific considerations, such as:
     *   **New Architectural Views**: Incorporating 'Data & Model Lineage' and 'Evaluation & Alignment' views.
     *   **Evolved Quality Attributes**: Highlighting 'Controllability', 'Explainability', 'Alignment & Safety', 'Data Sovereignty', and 'Sustainability' alongside traditional non-functional requirements.
     *   **Novel Components**: Detailing the roles of vector stores, prompt template services, agent orchestrators, GPU-accelerated inference tiers, and safety guardrails.
-3.  **Provide Actionable Guidance**: Through detailed chapters, case studies, and the LLM Design Pattern Catalogue, we offer concrete solutions and a top-down methodology for navigating the LLM application lifecycle.
+4.  **Provide Actionable Guidance for LLM Systems**: Through detailed chapters, case studies, and the LLM Design Pattern Catalogue (below), we offer concrete solutions and a top-down methodology specifically tailored for navigating the LLM application lifecycle.
 
 This approach ensures that you can leverage your existing architectural expertise while mastering the new tools and techniques essential for success with LLM technology.
 
@@ -99,7 +100,7 @@ The book is structured to guide you systematically through the process of LLM ap
 
 ## LLM Design Pattern Catalogue (Quick Reference)
 
-Throughout this architectural journey, you'll encounter recurring problems. This catalogue provides a quick reference to established LLM-specific design patterns, which are explored in detail within the relevant chapters:
+Throughout this architectural journey, you'll encounter recurring problems. This catalogue provides a quick reference to established LLM-specific design patterns, which are explored in detail within the relevant chapters. These patterns aim to provide a shared vocabulary and proven solutions for common challenges in designing LLM-based systems, much like classic design patterns have done for software engineering over the years:
 
 | Pattern                                  | Problem Solved                                           | Core Idea                                                              |
 | :--------------------------------------- | :------------------------------------------------------- | :--------------------------------------------------------------------- |
