@@ -1,6 +1,6 @@
 ---
 layout: default # or 'page'
-title: AI Application Design Field Manual # Site title for browser tab when on this page
+title: AI Application Architecture Design # Site title for browser tab when on this page
 parent: Chapters
 nav_order: 0
 permalink: /chapters/00-introduction/
@@ -9,7 +9,7 @@ date: 2023-05-15 # Optional, but good practice
 
 # Introduction to AI Application Design
 
-Welcome to the **AI Application Design Field Manual**! 
+Welcome to the **AI Application Architecture Design** guide! 
 
 Large Language Models (LLMs) and other AI technologies are rapidly transforming how we build software, offering unprecedented capabilities in understanding context, generating content, and driving complex workflows. However, moving from exciting prototypes to robust, production-grade AI applications requires a specialized architectural mindset.
 

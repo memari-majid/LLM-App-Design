@@ -8,7 +8,7 @@ hide:
   # - toc      # Optionally hide table of contents on this page if it's too busy
 ---
 
-# Overview: AI Application Design Field Manual
+# Overview: AI Application Architecture Design
 
 <figure markdown>
   <!-- If you have a cover image, you can add it here -->
@@ -16,7 +16,7 @@ hide:
   <figcaption>Your comprehensive guide to designing, building, and operating production-ready AI applications and AI agent systems.</figcaption>
 </figure>
 
-This **AI Application Design Field Manual** is your essential companion for navigating the rapidly evolving landscape of Artificial Intelligence (AI), including Large Language Models (LLMs), and their application in real-world, enterprise-grade systems.
+This **AI Application Architecture Design** guide is your essential companion for navigating the rapidly evolving landscape of Artificial Intelligence (AI), including Large Language Models (LLMs), and their application in real-world, enterprise-grade systems.
 
 Whether you're an **AI Architect**, a **Solutions Architect** adapting to AI, an **ML/Software Engineer** building these systems, or a **Technical Leader/Product Manager** guiding AI initiatives, this field manual provides the practical knowledge, battle-tested patterns, and strategic insights you need to succeed.
 
