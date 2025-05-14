@@ -37,12 +37,8 @@ markdown_extensions:
 # Navigation will now be primarily sidebar-driven
 # The first item is still the effective homepage
 nav:
-  - Home: chapters/00-introduction.md
-  - Overview: index.md
-  - About: about.md
-  - Chapters: # This still provides a section in the sidebar if sections are on
-    - Introduction: chapters/00-introduction.md
-    - Stakeholder Alignment: chapters/01-stakeholder-alignment.md
-    - Model Selection: chapters/02-llm-model-selection.md
-    - RAG Architecture: chapters/03-rag-architecture.md
-    - Agent Architectures: chapters/04-agent-architectures.md
+  - Introduction: chapters/00-introduction.md
+  - Stakeholder Alignment: chapters/01-stakeholder-alignment.md
+  - Model Selection: chapters/02-llm-model-selection.md
+  - RAG Architecture: chapters/03-rag-architecture.md
+  - Agent Architectures: chapters/04-agent-architectures.md
