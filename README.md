@@ -4,14 +4,13 @@ A comprehensive guide for AI Architects and technical leaders on designing produ
 
 ## 🌐 Website
 
-**Live Documentation:** [https://memari-majid.github.io/AI-Application-Architecture-Design/](https://memari-majid.github.io/AI-Application-Architecture-Design/)
+**Live Documentation:** [https://memari-majid.github.io/LLM-App-Design/](https://memari-majid.github.io/LLM-App-Design/)
 
 This site is built with [MkDocs](https://www.mkdocs.org/) and the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
 
 ## 🚀 Quick Links
 
-- **Home:** [Introduction](https://memari-majid.github.io/AI-Application-Architecture-Design/)
-- **Chapters:** [Browse all chapters](https://memari-majid.github.io/AI-Application-Architecture-Design/chapters/00-introduction/) (Start with Introduction)
+- **Home/Introduction:** [Start Reading](https://memari-majid.github.io/LLM-App-Design/chapters/00-introduction/)
 
 ## 🛠️ Local Development
 
@@ -41,7 +40,12 @@ To run the site locally:
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request for:
+
+-   New chapters or sections
+-   Corrections or clarifications
+-   Design patterns and case studies
+-   Visual diagrams or implementation examples
 
 ## 📜 License
 
@@ -49,4 +53,4 @@ Creative Commons BY-SA-4.0
 
 ---
 
-*Note: The old README.md.bak file can be deleted if no longer needed.* 
+*Note: Full content is available on the website. Original content backed up in README.md.bak* 
