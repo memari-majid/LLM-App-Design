@@ -1,26 +1,14 @@
-remote_theme: just-the-docs/just-the-docs
+theme: minima
 title: LLM Application-Architecture Design
 description: The AI Architect's Field Manual
-baseurl: ""
+baseurl: "/LLM-App-Desing"
 url: "https://memari-majid.github.io"
-github_username: memari-majid
-repository: memari-majid/LLM-App-Desing
-
-# Just-the-docs config
-color_scheme: light
-search_enabled: true
-heading_anchors: true
-aux_links:
-  "View on GitHub":
-    - "//github.com/memari-majid/LLM-App-Desing"
-nav_sort: case_sensitive
 
 # Build settings
 markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-remote-theme
 
 # Exclude from processing
 exclude:

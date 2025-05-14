@@ -1,8 +1,8 @@
 - name: Home
-  link: /
+  link: /LLM-App-Desing/
 - name: Chapters
-  link: /chapters/
+  link: /LLM-App-Desing/chapters/
 - name: About
-  link: /about/
+  link: /LLM-App-Desing/about/
 - name: GitHub
   link: https://github.com/memari-majid/LLM-App-Desing
