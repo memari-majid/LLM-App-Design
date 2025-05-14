@@ -19,7 +19,7 @@ This guide is maintained by a community of AI architects, solution engineers, an
 
 ## Contact
 
-For questions, suggestions, or contributions, please visit our [GitHub repository](https://github.com/memari-majid/LLM-Review) or reach out to us at [your-email@example.com].
+For questions, suggestions, or contributions, please visit our [GitHub repository](https://github.com/memari-majid/LLM-App-Desing) or reach out to us at [your-email@example.com].
 
 ---
 
