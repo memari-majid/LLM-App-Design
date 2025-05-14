@@ -1,18 +1,17 @@
-# LLM Application-Architecture Design
+# AI Application Architecture Design
 
-A comprehensive guide for AI Architects and technical leaders on designing production-ready LLM applications.
+A comprehensive guide for AI Architects and technical leaders on designing production-ready AI applications.
 
 ## 🌐 Website
 
-**Live Documentation:** [https://memari-majid.github.io/LLM-App-Desing/](https://memari-majid.github.io/LLM-App-Desing/)
+**Live Documentation:** [https://memari-majid.github.io/AI-Application-Architecture-Design/](https://memari-majid.github.io/AI-Application-Architecture-Design/)
 
 This site is built with [MkDocs](https://www.mkdocs.org/) and the [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme.
 
 ## 🚀 Quick Links
 
-- **Home:** [Overview and introduction](https://memari-majid.github.io/LLM-App-Desing/)
-- **Chapters:** [All guide chapters](https://memari-majid.github.io/LLM-App-Desing/chapters/00-introduction/) (Start with Introduction)
-- **About:** [About the guide and contributors](https://memari-majid.github.io/LLM-App-Desing/about/)
+- **Home:** [Introduction](https://memari-majid.github.io/AI-Application-Architecture-Design/)
+- **Chapters:** [Browse all chapters](https://memari-majid.github.io/AI-Application-Architecture-Design/chapters/00-introduction/) (Start with Introduction)
 
 ## 🛠️ Local Development
 
@@ -32,25 +31,17 @@ To run the site locally:
 ## ✍️ Adding New Chapters
 
 1.  Create a new Markdown file (e.g., `05-new-topic.md`) in the `docs/chapters/` directory.
-2.  Add it to the `nav` section in the `mkdocs.yml` file under `Chapters`:
+2.  Add it to the `nav` section in the `mkdocs.yml` file:
     ```yaml
     nav:
-      - Home: index.md
-      - About: about.md
-      - Chapters:
-        - Introduction: chapters/00-introduction.md
-        # ... other chapters ...
-        - New Topic Title: chapters/05-new-topic.md # <-- Add new chapter here
+      - Introduction: chapters/00-introduction.md
+      # ... other chapters ...
+      - New Topic Title: chapters/05-new-topic.md # <-- Add new chapter here
     ```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request for:
-
--   New chapters or sections
--   Corrections or clarifications
--   Design patterns and case studies
--   Visual diagrams or implementation examples
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📜 License
 
@@ -58,4 +49,4 @@ Creative Commons BY-SA-4.0
 
 ---
 
-*Note: Full content is available on the website. Original content backed up in README.md.bak* 
+*Note: The old README.md.bak file can be deleted if no longer needed.* 

@@ -1,8 +1,8 @@
 site_name: AI Application Architecture Design
-site_url: https://memari-majid.github.io/LLM-App-Desing/
+site_url: https://memari-majid.github.io/AI-Application-Architecture-Design/
 site_description: Your guide to designing production-ready AI applications.
-repo_url: https://github.com/memari-majid/LLM-App-Desing
-repo_name: memari-majid/LLM-App-Desing
+repo_url: https://github.com/memari-majid/AI-Application-Architecture-Design
+repo_name: memari-majid/AI-Application-Architecture-Design
 
 theme:
   name: material
