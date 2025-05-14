@@ -1,0 +1,8 @@
+- name: Home
+  link: /
+- name: Chapters
+  link: /chapters/
+- name: About
+  link: /about/
+- name: GitHub
+  link: https://github.com/memari-majid/llm-architecture-guide 

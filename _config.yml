@@ -1,0 +1,21 @@
+theme: jekyll-theme-cayman
+title: LLM Application-Architecture Design
+description: The AI Architect's Field Manual
+baseurl: ""
+url: ""
+github_username: 
+repository: 
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git/ 
