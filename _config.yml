@@ -1,10 +1,19 @@
-theme: jekyll-theme-cayman
+theme: just-the-docs
 title: LLM Application-Architecture Design
 description: The AI Architect's Field Manual
 baseurl: ""
 url: "https://memari-majid.github.io"
 github_username: memari-majid
 repository: memari-majid/LLM-Review
+
+# Just-the-docs config
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+aux_links:
+  "View on GitHub":
+    - "//github.com/memari-majid/LLM-Review"
+nav_sort: case_sensitive
 
 # Build settings
 markdown: kramdown

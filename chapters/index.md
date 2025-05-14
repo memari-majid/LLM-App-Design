@@ -1,7 +1,9 @@
 ---
 layout: page
 title: Chapters
+nav_order: 2
 permalink: /chapters/
+has_children: true
 ---
 
 # Chapters

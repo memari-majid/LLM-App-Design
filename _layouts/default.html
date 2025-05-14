@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-{% seo %}
-    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
-  </head>
-  <body>
-    <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.subtitle | default: site.description | default: site.github.project_tagline }}</h2>
-      
-      <nav>
-        {% for item in site.data.navigation %}
-          <a href="{{ item.link }}" class="btn">{{ item.name }}</a>
-        {% endfor %}
-      </nav>
-    </header>
-
-    <main id="content" class="main-content" role="main">
-      {{ content }}
-
-      <footer class="site-footer">
-        <span class="site-footer-owner">© 2025 The LLM Application-Architecture Design Contributors</span>
-      </footer>
-    </main>
-  </body>
-</html> 
+{{ content }} 

@@ -1,8 +1,10 @@
 ---
 layout: page
 title: Introduction to LLM Application Architecture
+parent: Chapters
+nav_order: 0
 permalink: /chapters/00-introduction/
-date: 2025-05-14
+date: 2023-05-15
 ---
 
 # Introduction to LLM Application Architecture

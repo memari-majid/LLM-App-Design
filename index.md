@@ -1,7 +1,8 @@
 ---
-layout: default
-title: LLM Application-Architecture Design
-subtitle: The AI Architect's Field Manual
+layout: home
+title: Home
+nav_order: 1
+permalink: /
 ---
 
 # LLM Application-Architecture Design: The AI Architect's Field Manual

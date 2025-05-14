@@ -19,12 +19,15 @@ mkdir -p chapters
 CHAPTER_FILE="chapters/$1.md"
 CHAPTER_TITLE="$2"
 CURRENT_DATE=$(date +"%Y-%m-%d")
+CHAPTER_NUM=$(echo "$1" | grep -o '^[0-9]*')
 
 # Create the chapter file
 cat > "$CHAPTER_FILE" << EOF
 ---
 layout: page
 title: $CHAPTER_TITLE
+parent: Chapters
+nav_order: ${CHAPTER_NUM:-99}
 permalink: /chapters/$1/
 date: $CURRENT_DATE
 ---
