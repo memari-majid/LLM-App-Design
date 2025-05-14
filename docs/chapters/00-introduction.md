@@ -1,13 +1,13 @@
 ---
 layout: default # or 'page'
-title: AI Application Architecture Design # Site title for browser tab when on this page
+title: Introduction - AI Application Architecture Design # Browser tab title for this page
 parent: Chapters
 nav_order: 0
 permalink: /chapters/00-introduction/
 date: 2023-05-15 # Optional, but good practice
 ---
 
-# Introduction to AI Application Design
+# Introduction to AI Application Architecture Design
 
 Welcome to the **AI Application Architecture Design** guide! 
 
