@@ -7,7 +7,8 @@ repo_name: memari-majid/LLM-App-Design
 theme:
   name: material
   features:
-    - navigation.sections
+    # navigation.tabs # Keep this off for no top tabs
+    - navigation.sections # This will create sections in the sidebar based on nav structure
     - navigation.expand
     - navigation.top
     - navigation.tracking
@@ -37,8 +38,10 @@ markdown_extensions:
 # Navigation will now be primarily sidebar-driven
 # The first item is still the effective homepage
 nav:
-  - Introduction: chapters/00-introduction.md
+  - Home: chapters/00-introduction.md # This will be the site's homepage
   - Stakeholder Alignment: chapters/01-stakeholder-alignment.md
   - Model Selection: chapters/02-llm-model-selection.md
   - RAG Architecture: chapters/03-rag-architecture.md
   - Agent Architectures: chapters/04-agent-architectures.md
+  - Overview: index.md # The former landing page, now an "Overview" page
+  - About: about.md
