@@ -1,6 +1,6 @@
-site_name: LLM Application-Architecture Design
+site_name: AI Application Design Field Manual
 site_url: https://memari-majid.github.io/LLM-App-Desing/
-site_description: The AI Architect's Field Manual
+site_description: Your guide to designing production-ready AI applications.
 repo_url: https://github.com/memari-majid/LLM-App-Desing
 repo_name: memari-majid/LLM-App-Desing
 
@@ -35,11 +35,13 @@ markdown_extensions:
   - toc:
       permalink: true
 
+# The first item listed will be the homepage
 nav:
-  - Home: index.md
+  - Home: chapters/00-introduction.md # Makes Introduction the homepage
+  - Overview: index.md # The previous homepage content, now an overview page
   - About: about.md
-  - Chapters:
-    - Introduction: chapters/00-introduction.md
+  - Chapters: # This will group the chapters in the navigation under a "Chapters" tab/section
+    - Introduction: chapters/00-introduction.md # Listed again to appear under Chapters section
     - Stakeholder Alignment: chapters/01-stakeholder-alignment.md
     - Model Selection: chapters/02-llm-model-selection.md
     - RAG Architecture: chapters/03-rag-architecture.md
